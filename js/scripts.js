@@ -1,15 +1,26 @@
 
 // back end
+var vowel = ["a","e","i","o","u"]
+
 var consonantCheck = function(input) {
-  for (var index=0; index < vowel.length; index++){
-    if (input.charAt(0) === vowel[index]) {
-    return input.slice(1,input.length) + input.slice(0,1) + "ay";
-    } else if (input.charAt(1) === vowel[index]) {
-    return input.slice(2,input.length) + input.slice(0,2) + "ay";
-    } else if (input.charAt(2) === vowel[index]) {
-    return input.slice(3,input.length) + input.slice(0,3) + "ay";
-    }
-  }
+  alert(input.charAt(1));
+  //
+  // for (var index = 0; index < vowel.length; index++) {
+  //   alert(vowel.length);
+  //   if (input.charAt(0) === vowel[index]) {
+  //
+  //   return input.slice(1,input.length) + input.slice(0,1) + "ay";
+  //
+  //   } else if (input.charAt(1) === vowel[index]) {
+  //
+  //   return input.slice(2,input.length) + input.slice(0,2) + "ay";
+  //
+  //   } else if (input.charAt(2) === vowel[index]) {
+  //
+  //   return input.slice(3,input.length) + input.slice(0,3) + "ay";
+  //
+  //   }
+  // }
 }
 
 var isNotALetter = function(input) {
@@ -23,19 +34,16 @@ var isNotALetter = function(input) {
 
 var translateToASCII = function(input) {
 
-  var vowel = ["a","e","i","o","u"]
-
-  var letter = isNotALetter(input);
-  if (!letter) {
+  var notALetter = isNotALetter(input);
+  if (notALetter) {
     alert("Not a letter");
   } else {
-    for (var index=0; index < vowel.length; index++) {
+    for (var index=0; index < vowel.length && ; index++) {
       if (input.charAt(0) === vowel[index]) {
         return input  + "way";
       } else {
         consonantCheck(input);
           // input = input + inputSliced + "ay";
-          alert(inputSliced);
       }
     }
   }
