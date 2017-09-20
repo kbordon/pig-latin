@@ -5,12 +5,18 @@ var translateToASCII = function(input) {
     alert("do nothing");
   }
   var vowel = ["a","e","i","o","u"]
+  // var inputArray = input.split("");
+  // for (var index=0; inputArray.length < index; index++) {
+  //
+  // }
+
   for (var index=0; index < vowel.length; index++) {
-    if (input === vowel[index]) {
+    if (input.charAt(0) === vowel[index]) {
       input = input + "way";
       return input;
     }
   }
+
 }
 // front end
 $(document).ready(function() {
