@@ -4,6 +4,13 @@ var translateToASCII = function(input) {
   if (ascii <65 || (ascii >90 && ascii <96 || ascii > 122)) {
     alert("do nothing");
   }
+  var vowel = ["a","e","i","o","u"]
+  for (var index=0; index < vowel.length; index++) {
+    if (input === vowel[index]) {
+      input = input + "way";
+      return input;
+    }
+  }
 }
 // front end
 $(document).ready(function() {
