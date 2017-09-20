@@ -38,14 +38,25 @@ var translateToASCII = function(input) {
   if (notALetter) {
     alert("Not a letter");
   } else {
-    for (var index=0; index < vowel.length && ; index++) {
-      if (input.charAt(0) === vowel[index]) {
-        return input  + "way";
-      } else {
-        consonantCheck(input);
-          // input = input + inputSliced + "ay";
-      }
-    }
+    if (vowel.indexOf(input[0]) > -1) {
+      return input + "way";
+    } else if (vowel.indexOf(input[1]) > -1) {
+      return input.slice(1,input.length) + input.slice(0,1) + "ay";
+    } else if (vowel.indexOf(input[2]) > -1) {
+      return input.slice(2,input.length) + input.slice(0,2) + "ay";
+    } else if (vowel.indexOf(input[3]) > -1) {
+      return input.slice(3,input.length) + input.slice(0,3) + "ay";
+      alert("hi");
+  }
+
+    // for (var index=0; index < vowel.length && ; index++) {
+    //   if (input.charAt(0) === vowel[index]) {
+    //     return input  + "way";
+    //   } else {
+    //     consonantCheck(input);
+    //       input = input + inputSliced + "ay";
+    //   }
+    // }
   }
 }
 //}
