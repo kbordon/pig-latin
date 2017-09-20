@@ -12,8 +12,14 @@ var translateToASCII = function(input) {
 
   for (var index=0; index < vowel.length; index++) {
     if (input.charAt(0) === vowel[index]) {
-      input = input + "way";
-      return input;
+      return input  + "way";
+    } else { TODO figure out a for loop more than one consonant
+      if (input.charAt(1) === vowel[index]) {
+        inputSliced = input.slice(1,input.length) + input.slice(0,1) + "ay";
+      }
+
+      // input = input + inputSliced + "ay";
+      alert(inputSliced);
     }
   }
 
