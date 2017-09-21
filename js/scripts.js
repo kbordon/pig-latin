@@ -1,27 +1,6 @@
 
 // back end
-var vowel = ["a","e","i","o","u"]
-
-var consonantCheck = function(input) {
-  alert(input.charAt(1));
-  //
-  // for (var index = 0; index < vowel.length; index++) {
-  //   alert(vowel.length);
-  //   if (input.charAt(0) === vowel[index]) {
-  //
-  //   return input.slice(1,input.length) + input.slice(0,1) + "ay";
-  //
-  //   } else if (input.charAt(1) === vowel[index]) {
-  //
-  //   return input.slice(2,input.length) + input.slice(0,2) + "ay";
-  //
-  //   } else if (input.charAt(2) === vowel[index]) {
-  //
-  //   return input.slice(3,input.length) + input.slice(0,3) + "ay";
-  //
-  //   }
-  // }
-}
+var vowel = ["a","e","i","o","u","y"]
 
 var isNotALetter = function(input) {
   for (index=0; index < input.length; index++) {      //check if not a letter
@@ -32,34 +11,40 @@ var isNotALetter = function(input) {
   }
 }
 
-var translateToASCII = function(input) {
+var isALetter = function(input) {
+  if (input.includes("qu")) {
+    return includesQu(input);
+  } else if (input.charAt(0) === "y") {
+    return input + "ay";
+  } else if (vowel.indexOf(input[0]) > -1 ) {
+    return input + "way";
+  } else if (vowel.indexOf(input[1]) > -1) {
+    return input.slice(1,input.length) + input.slice(0,1) + "ay";
+  } else if (vowel.indexOf(input[2]) > -1) {
+    return input.slice(2,input.length) + input.slice(0,2) + "ay";
+  } else if (vowel.indexOf(input[3]) > -1) {
+    return input.slice(3,input.length) + input.slice(0,3) + "ay";
+  }
+}
 
+var includesQu = function(input) {
+  if (input.charAt(0) === "q" || input.charAt(1) === "q") {
+    return input.slice(input.indexOf("u")+1, input.length) + input.slice(0,input.indexOf("u")+1) + "ay";
+  }
+}
+
+var translateToASCII = function(input) {
   var notALetter = isNotALetter(input);
   if (notALetter) {
     alert("Not a letter");
   } else {
-    if (vowel.indexOf(input[0]) > -1) {
-      return input + "way";
-    } else if (vowel.indexOf(input[1]) > -1) {
-      return input.slice(1,input.length) + input.slice(0,1) + "ay";
-    } else if (vowel.indexOf(input[2]) > -1) {
-      return input.slice(2,input.length) + input.slice(0,2) + "ay";
-    } else if (vowel.indexOf(input[3]) > -1) {
-      return input.slice(3,input.length) + input.slice(0,3) + "ay";
-      alert("hi");
-  }
-
-    // for (var index=0; index < vowel.length && ; index++) {
-    //   if (input.charAt(0) === vowel[index]) {
-    //     return input  + "way";
-    //   } else {
-    //     consonantCheck(input);
-    //       input = input + inputSliced + "ay";
-    //   }
-    // }
+    return isALetter(input);
   }
 }
-//}
+
+var stringToArray = function (input) {
+  return input.split(" ");
+}
 
 
 // front end
@@ -67,6 +52,7 @@ $(document).ready(function() {
   $('form').submit(function(event) {
     event.preventDefault();
     var input = $('input#string').val();
+    var inputArray = stringToArray(input);
 
     var result = translateToASCII(input);
     $("#output").text(result);
