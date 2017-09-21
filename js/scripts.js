@@ -1,6 +1,6 @@
 
 // back end
-var vowel = ["a","e","i","o","u","y"]
+var vowel = ["a","e","i","o","u","y","A","I","E","O","U","Y"]
 
 var isNotALetter = function(input) {
   for (index=0; index < input.length; index++) {      //check if not a letter
@@ -36,7 +36,7 @@ var includesQu = function(input) {
 var translateToASCII = function(input) {
   var notALetter = isNotALetter(input);
   if (notALetter) {
-    alert("Not a letter");
+    alert("Please enter only letters.");
   } else {
     return isALetter(input);
   }
@@ -53,9 +53,13 @@ $(document).ready(function() {
     event.preventDefault();
     var input = $('input#string').val();
     var inputArray = stringToArray(input);
+    var resultArray = [];
 
-    var result = translateToASCII(input);
-    $("#output").text(result);
+    inputArray.forEach(function (inputElement) {
+      resultArray.push(translateToASCII(inputElement));
+    });
+    var result = resultArray.join(" ");
+    $(".translationOutput").text(result);
     $("#output").show();
   });
 });
